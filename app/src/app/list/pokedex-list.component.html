@@ -1,15 +1,18 @@
-<div *ngIf="pokemonList.length > 0; else loading">
-  <div *ngFor="let pokemon of pokemonList" class="pokemon-item">
-    <h3>
-      <a [routerLink]="['/pokemon', pokemon.name]">{{ pokemon.name | titlecase }}</a>
-    </h3>
-    <img [src]="pokemon.image" [alt]="pokemon.name" />
-  </div>
+<div *ngIf="pokemonList.length > 0; else loading" class="grid grid-cols-2 md:grid-cols-4 gap-2">
+  <div *ngFor="let pokemon of pokemonList" class="border border-gray-300 rounded group hover:border-orange-200 transition-colors">
+    <a [routerLink]="['/pokemon', pokemon.name]" class="flex flex-col justify-center items-center p-2">
+      <h3 class="font-medium bg-gray-100 w-full text-center rounded p-2 group-hover:bg-orange-200 transition-colors">
+        {{ pokemon.name | titlecase }}
+      </h3>
 
-  <button *ngIf="next" (click)="loadMorePokemons()">
+      <img [src]="pokemon.image" [alt]="pokemon.name" />
+    </a>
+  </div>
+</div>
+
+  <button *ngIf="next" (click)="loadMorePokemons()" class="w-full flex  justify-center items-center p-4 rounded border border-gray-200 bg-gray-200 my-4 hover:bg-gray-300 transition-colors">
     Load More
   </button>
-</div>
 
 <ng-template #loading>
   <p>Loading Pokémon...</p>

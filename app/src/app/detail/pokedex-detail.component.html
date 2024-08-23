@@ -1,10 +1,16 @@
-<div *ngIf="pokemon; else loading">
-    <a routerLink="/">Back to List</a>
-  <h2>{{ pokemon.name | titlecase }}</h2>
-  <img [src]="pokemon.image" [alt]="pokemon.name" />
-  <p>ID: {{ pokemon.id }}</p>
-  <p>Height: {{ pokemon.height }}</p>
-  <p>Weight: {{ pokemon.weight }}</p>
+<div *ngIf="pokemon; else loading" class="flex flex-col gap-4">
+
+  <a routerLink="/" class="hover:text-blue-500">Back to List</a>
+
+  <section class="flex flex-col justify-center items-center gap-4">
+    <h2 class="font-medium text-2xl bg-gray-100 w-full text-center rounded p-2 ">{{ pokemon.name | titlecase }}</h2>
+    <img [src]="pokemon.image" [alt]="pokemon.name" class="aspect-square w-96" />
+  </section>
+
+  <section class="flex flex-col">
+    <p><span class="font-medium">Height:</span> {{ pokemon.height }}</p>
+    <p><span class="font-medium">Weight:</span> {{ pokemon.weight }}</p>
+  </section>
 </div>
 
 <ng-template #loading>
