@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { PokemonListResponse } from './pokemon.interface';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class PokemonService {
-  private readonly apiURL = 'http://localhost:3000/api';
+  private readonly apiURL = environment.apiUrl;
 
   constructor(private readonly http: HttpClient) {}
 
