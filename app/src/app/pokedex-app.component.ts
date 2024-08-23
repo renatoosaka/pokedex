@@ -1,0 +1,8 @@
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'pokedex',
+  templateUrl: './pokedex-app.component.html',
+  styleUrl: './pokedex-app.component.scss',
+})
+export class PokedexAppComponent {}

@@ -1,0 +1,12 @@
+<div *ngIf="pokemon; else loading">
+    <a routerLink="/">Back to List</a>
+  <h2>{{ pokemon.name | titlecase }}</h2>
+  <img [src]="pokemon.image" [alt]="pokemon.name" />
+  <p>ID: {{ pokemon.id }}</p>
+  <p>Height: {{ pokemon.height }}</p>
+  <p>Weight: {{ pokemon.weight }}</p>
+</div>
+
+<ng-template #loading>
+  <p>Loading Pokémon details...</p>
+</ng-template>

@@ -1,0 +1,16 @@
+<div *ngIf="pokemonList.length > 0; else loading">
+  <div *ngFor="let pokemon of pokemonList" class="pokemon-item">
+    <h3>
+      <a [routerLink]="['/pokemon', pokemon.name]">{{ pokemon.name | titlecase }}</a>
+    </h3>
+    <img [src]="pokemon.image" [alt]="pokemon.name" />
+  </div>
+
+  <button *ngIf="next" (click)="loadMorePokemons()">
+    Load More
+  </button>
+</div>
+
+<ng-template #loading>
+  <p>Loading Pokémon...</p>
+</ng-template>
