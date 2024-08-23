@@ -1,4 +1,14 @@
-<div *ngIf="pokemonList.length > 0; else loading" class="grid grid-cols-2 md:grid-cols-4 gap-2">
+<form (ngSubmit)="onSubmit()" class="flex flex-row gap-2 items-center my-4">
+  <input type="text" name="searchQuery" [(ngModel)]="searchQuery" placeholder="Search Pokémon" class="border border-gray-200 px-2 h-10 rounded w-full" />
+  <button type="submit" class="flex justify-center items-center rounded border border-gray-200 bg-gray-200 p-2 hover:bg-gray-300 transition-colors">
+    Search
+  </button>
+  <button class="" (click)="clearSearch()">
+    Clear
+  </button>
+</form>
+
+<div *ngIf="!isLoading && pokemonList.length > 0; else noResults" class="grid grid-cols-2 md:grid-cols-4 gap-2">
   <div *ngFor="let pokemon of pokemonList" class="border border-gray-300 rounded group hover:border-orange-200 transition-colors">
     <a [routerLink]="['/pokemon', pokemon.name]" class="flex flex-col justify-center items-center p-2">
       <h3 class="font-medium bg-gray-100 w-full text-center rounded p-2 group-hover:bg-orange-200 transition-colors">
@@ -14,6 +24,10 @@
     Load More
   </button>
 
-<ng-template #loading>
-  <p>Loading Pokémon...</p>
+<div *ngIf="isLoading" class="loading">
+  Loading...
+</div>
+
+<ng-template #noResults>
+  <p *ngIf="!isLoading">No Pokémon found.</p>
 </ng-template>

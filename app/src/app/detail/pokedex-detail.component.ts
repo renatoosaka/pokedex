@@ -8,7 +8,8 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './pokedex-detail.component.html',
 })
 export class PokedexDetailComponent implements OnInit {
-  pokemon: Pokemon;
+  pokemon: Pokemon | null = null;
+  isLoading = false;
 
   constructor(
     private readonly route: ActivatedRoute,
@@ -16,9 +17,18 @@ export class PokedexDetailComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.isLoading = true;
     const name = this.route.snapshot.paramMap.get('name');
-    this.pokemonService.get(name).subscribe((response) => {
-      this.pokemon = response;
+    this.pokemonService.get(name).subscribe({
+      next: (response) => {
+        this.pokemon = response;
+      },
+      error: (error) => {
+        this.pokemon = null;
+      },
+      complete: () => {
+        this.isLoading = false;
+      },
     });
   }
 }

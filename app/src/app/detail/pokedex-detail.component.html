@@ -1,4 +1,4 @@
-<div *ngIf="pokemon; else loading" class="flex flex-col gap-4">
+<div *ngIf="!isLoading && pokemon; else noResults" class="flex flex-col gap-4">
 
   <a routerLink="/" class="hover:text-blue-500">Back to List</a>
 
@@ -13,6 +13,10 @@
   </section>
 </div>
 
-<ng-template #loading>
-  <p>Loading Pokémon details...</p>
+<div *ngIf="isLoading" class="loading">
+  Loading...
+</div>
+
+<ng-template #noResults>
+  <p *ngIf="!isLoading">No Pokémon found.</p>
 </ng-template>
