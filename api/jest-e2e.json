@@ -1,0 +1,41 @@
+{
+  "moduleFileExtensions": ["js", "json", "ts"],
+  "rootDir": ".",
+  "testEnvironment": "node",
+  "testMatch": ["<rootDir>/test/**/*.e2e-spec.{ts,js}"],
+  "transform": {
+    "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "moduleNameMapper": {
+    "^@/(.*)$": "<rootDir>/src/$1",
+    "^@Helper/(.*)$": "<rootDir>/src/common/$1"
+  },
+  "collectCoverage": true,
+  "coverageDirectory": "./coverage-e2e",
+  "collectCoverageFrom": ["**/*.(t|j)s"],
+  "coveragePathIgnorePatterns": [
+    "<rootDir>/node_modules/",
+    ".eslintrc.js",
+    "coverage",
+    "coverage-e2e",
+    "dist",
+    "/*.spec.ts",
+    "/*.dto.ts",
+    "/dto/",
+    "main.ts"
+  ],
+  "coverageReporters": ["json", "lcov", "text", "clover", "cobertura"],
+  "reporters": [
+    "default",
+    [
+      "jest-junit",
+      {
+        "suiteName": "Jest e2e tests",
+        "outputDirectory": "./coverage",
+        "outputName": "junit.xml",
+        "reportTestSuiteErrors": true,
+        "includeShortConsoleOutput": true
+      }
+    ]
+  ]
+}
