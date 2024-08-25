@@ -1,6 +1,6 @@
-<form (ngSubmit)="onSubmit()" class="flex flex-row gap-2 items-center my-4">
-  <input type="text" name="searchQuery" [(ngModel)]="searchQuery" placeholder="Search Pokémon" class="border border-gray-200 px-2 h-10 rounded w-full" />
-  <button type="submit" class="flex justify-center items-center rounded border border-gray-200 bg-gray-200 p-2 hover:bg-gray-300 transition-colors">
+<form (ngSubmit)="onSubmit()" class="flex flex-row items-center gap-2 my-4">
+  <input type="text" name="searchQuery" [(ngModel)]="searchQuery" placeholder="Search Pokémon" class="w-full h-10 px-2 border border-gray-200 rounded" />
+  <button type="submit" class="flex items-center justify-center p-2 transition-colors bg-gray-200 border border-gray-200 rounded hover:bg-gray-300">
     Search
   </button>
   <button class="" (click)="clearSearch()">
@@ -8,10 +8,10 @@
   </button>
 </form>
 
-<div *ngIf="!isLoading && pokemonList.length > 0; else noResults" class="grid grid-cols-2 md:grid-cols-4 gap-2">
-  <div *ngFor="let pokemon of pokemonList" class="border border-gray-300 rounded group hover:border-orange-200 transition-colors">
-    <a [routerLink]="['/pokemon', pokemon.name]" class="flex flex-col justify-center items-center p-2">
-      <h3 class="font-medium bg-gray-100 w-full text-center rounded p-2 group-hover:bg-orange-200 transition-colors">
+<div *ngIf="!isLoading && pokemonList.length > 0; else noResults" class="grid grid-cols-2 gap-2 md:grid-cols-4">
+  <div *ngFor="let pokemon of pokemonList" class="transition-colors border border-gray-300 rounded pokemon-item group hover:border-orange-200">
+    <a [routerLink]="['/pokemon', pokemon.name]" class="flex flex-col items-center justify-center p-2">
+      <h3 class="w-full p-2 font-medium text-center transition-colors bg-gray-100 rounded group-hover:bg-orange-200">
         {{ pokemon.name | titlecase }}
       </h3>
 
@@ -20,7 +20,7 @@
   </div>
 </div>
 
-  <button *ngIf="next" (click)="loadMorePokemons()" class="w-full flex  justify-center items-center p-4 rounded border border-gray-200 bg-gray-200 my-4 hover:bg-gray-300 transition-colors">
+  <button *ngIf="next" (click)="loadMorePokemons()" class="flex items-center justify-center w-full p-4 my-4 transition-colors bg-gray-200 border border-gray-200 rounded hover:bg-gray-300">
     Load More
   </button>
 
